@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Eye, EyeOff } from 'lucide-react';
 
 const SignUp = () => {
+  const apiURL=process.env.REACT_APP_API_URL;
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
     firstName: "",
@@ -38,7 +39,7 @@ const SignUp = () => {
     e.preventDefault();
     if (validateForm()) {
       try {
-        const response = await fetch('http://localhost:5000/api/signup', {
+        const response = await fetch(`${apiURL}/api/signup`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json',
