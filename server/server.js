@@ -1,19 +1,20 @@
-import express, { json } from "express";
-import { connect } from "mongoose";
-import { config } from "dotenv";
-import cors from "cors"; // Add this line
+const express = require("express");
+const mongoose = require("mongoose");
+const dotenv = require("dotenv");
+const cors = require("cors"); // Add this line
 
-config();
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 5000;
 
 // Middleware
 app.use(cors());
-app.use(json());
+app.use(express.json());
 
 // MongoDB connection
-connect(process.env.MONGODB_URI, {
+mongoose
+  .connect(process.env.MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
   })
